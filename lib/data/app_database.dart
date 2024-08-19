@@ -10,7 +10,7 @@ class AppDatabase {
 
   static AppDatabase get instance => _singleton;
 
-  late Completer<Database> _dbOpenCompleter;
+  Completer<Database>? _dbOpenCompleter;
 
   AppDatabase._();
 
@@ -20,7 +20,7 @@ class AppDatabase {
     _dbOpenCompleter = Completer();
     _openDatabase();
     }
-    return _dbOpenCompleter.future;
+    return _dbOpenCompleter?.future ?? Future.value(null);
   }
 
   Future _openDatabase() async {
@@ -31,6 +31,6 @@ class AppDatabase {
 
     final database = await databaseFactoryIo.openDatabase(dbPath);
 
-    _dbOpenCompleter.complete(database);
+    _dbOpenCompleter!.complete(database);
   }
 }

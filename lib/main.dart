@@ -26,14 +26,28 @@ class App extends StatelessWidget {
 
     final repository = Repository();
     final masterDataViewModel = MasterDataViewModel(repository);
-    masterDataViewModel.fetchAndSaveCategoriesData();
-    masterDataViewModel.fetchAndSaveProductsData();
-    final List<Category> categories = [];
-    final products = [];
+
+    Future<List<Category>> fetchAndSaveCategoriesData() async {
+      await masterDataViewModel.fetchAndSaveCategoriesData();
+      await masterDataViewModel.fetchAndSaveProductsData();
+      return masterDataViewModel.getAllCategories();
+    }
 
     return MaterialApp(
-      theme: theme,
-      home: TabsScreen(categories: categories),
+        theme: theme,
+        home: FutureBuilder<List<Category>>(
+          future:  fetchAndSaveCategoriesData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator(); // Or your loading indicator
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else {
+              final List<Category> categories = snapshot.data!;
+              return TabsScreen(categories: categories); // Your widget using the data
+            }
+          },
+        )
     );
   }
 }
