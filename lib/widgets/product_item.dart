@@ -58,7 +58,9 @@ class ProductItem extends StatelessWidget {
                         ProductItemTrait(icon: Icons.work, label: product.category),
                         const SizedBox(width: 12),
                         ProductItemTrait(
-                            icon: Icons.attach_money, label: product.price.toString())
+                            icon: Icons.attach_money, label: product.price.toString()),
+                        const SizedBox(width: 12),
+                        ProductItemTrait(icon: Icons.star_rounded, label: product.rating.rate.toString())
                       ],
                     )
                   ],

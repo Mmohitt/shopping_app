@@ -46,7 +46,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 onPressed: () {
                   _addAndRemoveFromCart(context, product);
                 },
-                icon: const Icon(Icons.star))
+                icon: const Icon(Icons.add_shopping_cart))
           ],
         ),
         body: SingleChildScrollView(
