@@ -1,16 +1,13 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'category.freezed.dart';
+part 'category.g.dart';
 
-class Category {
-  const Category({
-    required this.name,
-  });
+@freezed
+class Category with _$Category {
+  const factory Category({
+    required String name
+  }) = _Category;
 
-  final String name;
-
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
-    name: json["name"] as String,
-  );
-
-  Map<String, dynamic> toJson() => {
-    "name": name,
-  };
+  factory Category.fromJson(Map<String, dynamic> json) =>
+      _$CategoryFromJson(json);
 }
