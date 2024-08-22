@@ -70,15 +70,15 @@ class ProductDetailsScreen extends StatelessWidget {
               const SizedBox(
                 height: 14,
               ),
-                Padding(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  child: Text(product.description,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
-                      )),
-                ),
+                Container(
+                 child: Text(product.description,
+                     textAlign: TextAlign.center,
+                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                       color: Theme.of(context).colorScheme.onBackground,
+                     )),
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+                )
+
             ],
           ),
         ));

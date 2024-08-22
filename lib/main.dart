@@ -39,12 +39,12 @@ class App extends StatelessWidget {
           future:  fetchAndSaveCategoriesData(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator(); // Or your loading indicator
+              return const CircularProgressIndicator();
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {
               final List<Category> categories = snapshot.data!;
-              return TabsScreen(categories: categories); // Your widget using the data
+              return TabsScreen(categories: categories);
             }
           },
         )
