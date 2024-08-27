@@ -1,3 +1,4 @@
+import 'package:e_comm_app/di/locator.dart';
 import 'package:e_comm_app/helpers/repository.dart';
 import 'package:e_comm_app/helpers/route.dart';
 import 'package:e_comm_app/models/category.dart';
@@ -16,6 +17,7 @@ final theme = ThemeData(
 );
 
 void main() {
+  locator();
   runApp(const App());
 }
 
@@ -25,7 +27,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final appRouter = AppRouter();
+    final appRouter = getIt<AppRouter>();
     return MaterialApp.router(
       theme: theme,
       routerConfig: appRouter.config(),

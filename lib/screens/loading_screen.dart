@@ -1,5 +1,6 @@
 
 import 'package:auto_route/annotations.dart';
+import 'package:e_comm_app/di/locator.dart';
 import 'package:e_comm_app/screens/tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,7 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
 
-
-  final masterDataViewModel = MasterDataViewModel(Repository());
+  final masterDataViewModel = getIt<MasterDataViewModel>();
 
   Future<List<Category>> fetchAndSaveCategoriesData() async {
     await masterDataViewModel.fetchAndSaveCategoriesData();

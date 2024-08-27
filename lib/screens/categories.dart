@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:e_comm_app/di/locator.dart';
 import 'package:e_comm_app/helpers/repository.dart';
 import 'package:e_comm_app/helpers/route.dart';
 import 'package:e_comm_app/helpers/viewmodel.dart';
@@ -19,8 +20,8 @@ class CategoriesScreen extends StatelessWidget {
   final Map<Filter, bool> selectedFilters;
 
   void _selectCategory(BuildContext context, Category category) async {
-    final repository = Repository();
-    final masterDataViewModel = MasterDataViewModel(repository);
+    final masterDataViewModel = getIt<MasterDataViewModel>();
+
     final products = await masterDataViewModel.getProductsFromCategory(category.name);
     List<Product> filteredProducts = products;
     if(selectedFilters[Filter.rating]!) {

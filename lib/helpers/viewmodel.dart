@@ -1,18 +1,19 @@
 import 'package:e_comm_app/data/dao.dart';
+import 'package:e_comm_app/di/locator.dart';
 import 'package:e_comm_app/helpers/repository.dart';
 import 'package:e_comm_app/models/category.dart';
 import 'package:e_comm_app/models/product.dart';
 import 'package:flutter/cupertino.dart';
 
 class MasterDataViewModel extends ChangeNotifier {
-  final Repository _repository;
-  final categoryDao = CategoryDao();
-  final productDao = ProductDao();
-  final cartDao = CartDao();
+  final _repository = getIt<Repository>();
+  final categoryDao = getIt<CategoryDao>();
+  final productDao = getIt<ProductDao>();
+  final cartDao = getIt<CartDao>();
   List<Category> _categories = [];
   List<Product> _products = [];
 
-  MasterDataViewModel(this._repository);
+  MasterDataViewModel();
 
   Future<void> fetchAndSaveCategoriesData() async {
 

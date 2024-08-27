@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:e_comm_app/models/category.dart';
 import 'package:e_comm_app/screens/categories.dart';
 
+import '../di/locator.dart';
+
 const kInitialFilters = {
   Filter.rating: false,
   Filter.sorting: false,
@@ -24,7 +26,6 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  final repository = Repository();
   int _selectedPageIndex = 0;
   Map<Filter, bool> _selectedFilters = kInitialFilters;
 
@@ -79,7 +80,7 @@ class _TabsScreenState extends State<TabsScreen> {
   }
 
   void openCart() async {
-    final masterDataViewModel = MasterDataViewModel(repository);
+    final masterDataViewModel = getIt<MasterDataViewModel>();
     final cartProducts = await masterDataViewModel.cartDao.getAllCartProduct();
     setState(() {
       activePage = ProductsScreen(

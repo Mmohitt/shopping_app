@@ -4,6 +4,8 @@ import 'package:e_comm_app/helpers/viewmodel.dart';
 import 'package:e_comm_app/models/product.dart';
 import 'package:flutter/material.dart';
 
+import '../di/locator.dart';
+
 @RoutePage()
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen(
@@ -13,8 +15,7 @@ class ProductDetailsScreen extends StatelessWidget {
   final void Function()? onToggleCart;
 
   Future<void> _addAndRemoveFromCart(BuildContext context ,Product product) async {
-    final repository = Repository();
-    final masterDataViewModel = MasterDataViewModel(repository);
+    final masterDataViewModel = getIt<MasterDataViewModel>();
     if(await masterDataViewModel.isProductInCart(product.id)){
       await masterDataViewModel.deleteProduct(product.id);
       _showInfoMessage(context, 'product is removed from cart');
