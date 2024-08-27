@@ -2,9 +2,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'rating.freezed.dart';
 part 'rating.g.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class Rating with _$Rating {
-  const factory Rating({
+     factory Rating({
     required double rate,
     required int count
   }) = _Rating;

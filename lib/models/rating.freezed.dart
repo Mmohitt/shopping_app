@@ -105,7 +105,7 @@ class __$$RatingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RatingImpl implements _Rating {
-  const _$RatingImpl({required this.rate, required this.count});
+  _$RatingImpl({required this.rate, required this.count});
 
   factory _$RatingImpl.fromJson(Map<String, dynamic> json) =>
       _$$RatingImplFromJson(json);
@@ -148,8 +148,8 @@ class _$RatingImpl implements _Rating {
 }
 
 abstract class _Rating implements Rating {
-  const factory _Rating(
-      {required final double rate, required final int count}) = _$RatingImpl;
+  factory _Rating({required final double rate, required final int count}) =
+      _$RatingImpl;
 
   factory _Rating.fromJson(Map<String, dynamic> json) = _$RatingImpl.fromJson;
 

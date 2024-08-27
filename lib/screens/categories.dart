@@ -1,4 +1,7 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:e_comm_app/helpers/repository.dart';
+import 'package:e_comm_app/helpers/route.dart';
 import 'package:e_comm_app/helpers/viewmodel.dart';
 import 'package:e_comm_app/models/category.dart';
 import 'package:e_comm_app/models/product.dart';
@@ -7,6 +10,7 @@ import 'package:e_comm_app/screens/products.dart';
 import 'package:e_comm_app/widgets/category_grid_item.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class CategoriesScreen extends StatelessWidget {
    const CategoriesScreen(
       {super.key,required this.availableCategories, required this.selectedFilters});
@@ -28,14 +32,7 @@ class CategoriesScreen extends StatelessWidget {
     if(selectedFilters[Filter.sorting]!) {
       filteredProducts.sort((a, b) => a.price.compareTo(b.price));
     }
-
-    Navigator.of(context).push(
-      MaterialPageRoute(
-          builder: (context) => ProductsScreen(
-            title: category.name,
-            products: filteredProducts, onToggleCart: () {  },
-          )),
-    );
+    context.router.push(ProductsRoute(title: category.name , products: filteredProducts, onToggleCart: () {}));
   }
 
   @override

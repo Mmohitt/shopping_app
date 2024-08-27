@@ -33,7 +33,17 @@ class ProductDao {
   Future<Database> get _db async => await AppDatabase.instance.database;
 
   Future insertProduct(Product product) async {
-    await _productFolder.add(await _db, product.toJson());
+    await _productFolder.add(await _db, {
+    'id': product.id,
+    'title': product.title,
+    'price': product.price,
+    'category': product.category,
+    'description': product.description,
+    'image': product.image,
+
+    'rating': product.rating.toJson(),
+
+    });
     print('product Inserted successfully !!');
   }
 
@@ -62,7 +72,17 @@ class CartDao {
   Future<Database> get _db async => await AppDatabase.instance.database;
 
   Future insertProduct(Product product) async {
-    await _cartFolder.add(await _db, product.toJson());
+    await _cartFolder.add(await _db, {
+    'id': product.id,
+    'title': product.title,
+    'price': product.price,
+    'category': product.category,
+    'description': product.description,
+    'image': product.image,
+
+    'rating': product.rating.toJson(),
+
+    });
     print('product Inserted successfully !!');
   }
 

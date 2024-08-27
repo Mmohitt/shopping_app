@@ -1,9 +1,13 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:e_comm_app/helpers/route.dart';
 import 'package:e_comm_app/models/product.dart';
 import 'package:e_comm_app/screens/product_details.dart';
 import 'package:e_comm_app/widgets/product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
+@RoutePage()
 class ProductsScreen extends StatefulWidget {
   const ProductsScreen(
       {super.key,
@@ -52,12 +56,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   }
 
   void selectProduct(BuildContext context, Product product) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => ProductDetailsScreen(
-        product: product,
-        onToggleCart: widget.onToggleCart,
-      ),
-    ));
+    context.router.push(ProductDetailsRoute(product: product, onToggleCart: widget.onToggleCart));
   }
 
 

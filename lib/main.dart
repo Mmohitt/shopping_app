@@ -1,4 +1,5 @@
 import 'package:e_comm_app/helpers/repository.dart';
+import 'package:e_comm_app/helpers/route.dart';
 import 'package:e_comm_app/models/category.dart';
 import 'package:e_comm_app/screens/tabs.dart';
 import 'package:flutter/material.dart';
@@ -24,30 +25,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final repository = Repository();
-    final masterDataViewModel = MasterDataViewModel(repository);
-
-    Future<List<Category>> fetchAndSaveCategoriesData() async {
-      await masterDataViewModel.fetchAndSaveCategoriesData();
-      await masterDataViewModel.fetchAndSaveProductsData();
-      return masterDataViewModel.getAllCategories();
-    }
-
-    return MaterialApp(
-        theme: theme,
-        home: FutureBuilder<List<Category>>(
-          future:  fetchAndSaveCategoriesData(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else {
-              final List<Category> categories = snapshot.data!;
-              return TabsScreen(categories: categories);
-            }
-          },
-        )
+    final appRouter = AppRouter();
+    return MaterialApp.router(
+      theme: theme,
+      routerConfig: appRouter.config(),
     );
   }
 }
